@@ -1,0 +1,27 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect x="76" y="76" width="1048" height="548" rx="42" fill="#0F172A"/>
+  <circle cx="1018" cy="126" r="194" fill="#2563EB" fill-opacity="0.14"/>
+  <text x="118" y="172" fill="#F8FAFC" font-family="Figtree, Arial, sans-serif" font-size="48" font-weight="700">Arquitectura d'aplicacions Laravel</text>
+  <text x="118" y="226" fill="#BFDBFE" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="500">Separació de responsabilitats, serveis i creixement ordenat</text>
+  <rect x="118" y="286" width="246" height="56" rx="18" fill="#1E3A8A"/>
+  <text x="154" y="322" fill="white" font-family="Figtree, Arial, sans-serif" font-size="22" font-weight="700">Arquitectura avançada</text>
+  <g>
+    <rect x="706" y="162" width="306" height="112" rx="28" fill="#DBEAFE"/>
+    <rect x="742" y="198" width="234" height="16" rx="8" fill="#1D4ED8" fill-opacity="0.4"/>
+    <rect x="742" y="228" width="176" height="16" rx="8" fill="#1D4ED8" fill-opacity="0.25"/>
+    <rect x="646" y="326" width="186" height="128" rx="28" fill="#BFDBFE"/>
+    <rect x="856" y="326" width="186" height="128" rx="28" fill="#93C5FD"/>
+    <path d="M859 274V326" stroke="#60A5FA" stroke-width="14" stroke-linecap="round"/>
+    <path d="M740 292H962" stroke="#60A5FA" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <rect x="118" y="430" width="522" height="92" rx="26" fill="#111827" stroke="#2563EB" stroke-opacity="0.7"/>
+  <text x="154" y="468" fill="#93C5FD" font-family="Figtree, Arial, sans-serif" font-size="18" font-weight="700">OBJECTIU DEL CURS</text>
+  <text x="154" y="501" fill="#F8FAFC" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="600">Donar estructura a projectes que han de créixer bé</text>
+  <defs>
+    <linearGradient id="bg" x1="104" y1="74" x2="1091" y2="636" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCEBFF"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+  </defs>
+</svg>

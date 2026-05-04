@@ -1,0 +1,27 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect x="74" y="74" width="1052" height="552" rx="42" fill="#F8FBFF"/>
+  <circle cx="1018" cy="114" r="190" fill="#2563EB" fill-opacity="0.1"/>
+  <text x="116" y="168" fill="#0F172A" font-family="Figtree, Arial, sans-serif" font-size="48" font-weight="700">Gestió acadèmica de la plataforma</text>
+  <text x="116" y="222" fill="#475569" font-family="Figtree, Arial, sans-serif" font-size="25" font-weight="500">Supervisió institucional, validacions i estat del sistema</text>
+  <rect x="116" y="286" width="258" height="56" rx="18" fill="#1D4ED8"/>
+  <text x="154" y="322" fill="white" font-family="Figtree, Arial, sans-serif" font-size="22" font-weight="700">Administració</text>
+  <g>
+    <rect x="716" y="152" width="284" height="356" rx="34" fill="#DBEAFE"/>
+    <rect x="754" y="198" width="210" height="32" rx="12" fill="#1D4ED8"/>
+    <rect x="754" y="256" width="210" height="26" rx="10" fill="#93C5FD"/>
+    <rect x="754" y="304" width="210" height="26" rx="10" fill="#93C5FD"/>
+    <rect x="754" y="352" width="210" height="26" rx="10" fill="#93C5FD"/>
+    <circle cx="782" cy="435" r="24" fill="#16A34A"/>
+    <path d="M770 435L779 444L794 427" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="116" y="430" width="530" height="92" rx="26" fill="#E0F2FE"/>
+  <text x="152" y="468" fill="#075985" font-family="Figtree, Arial, sans-serif" font-size="18" font-weight="700">ROL DE L’ADMIN</text>
+  <text x="152" y="501" fill="#0F172A" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="600">Garantir coherència, permisos i dades de demostració</text>
+  <defs>
+    <linearGradient id="bg" x1="92" y1="68" x2="1090" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDF5FF"/>
+      <stop offset="1" stop-color="#E4EEFF"/>
+    </linearGradient>
+  </defs>
+</svg>

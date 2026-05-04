@@ -1,0 +1,25 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect x="70" y="72" width="1060" height="556" rx="40" fill="#082F49"/>
+  <circle cx="1040" cy="110" r="184" fill="#67E8F9" fill-opacity="0.18"/>
+  <text x="116" y="166" fill="#F0F9FF" font-family="Figtree, Arial, sans-serif" font-size="48" font-weight="700">Blade i Tailwind</text>
+  <text x="116" y="220" fill="#BAE6FD" font-family="Figtree, Arial, sans-serif" font-size="25" font-weight="500">Interfícies netes, ràpides i amb bona jerarquia visual</text>
+  <rect x="116" y="286" width="228" height="56" rx="18" fill="#0891B2"/>
+  <text x="152" y="322" fill="white" font-family="Figtree, Arial, sans-serif" font-size="22" font-weight="700">Frontend base</text>
+  <g>
+    <rect x="706" y="152" width="326" height="364" rx="34" fill="#F0FDFF"/>
+    <rect x="744" y="194" width="252" height="42" rx="14" fill="#CFFAFE"/>
+    <rect x="744" y="262" width="252" height="102" rx="20" fill="#E0F2FE"/>
+    <rect x="744" y="390" width="112" height="42" rx="14" fill="#0F172A"/>
+    <rect x="884" y="390" width="112" height="42" rx="14" fill="#0284C7"/>
+  </g>
+  <rect x="116" y="428" width="498" height="92" rx="26" fill="#0C4A6E" stroke="#38BDF8" stroke-opacity="0.7"/>
+  <text x="152" y="468" fill="#A5F3FC" font-family="Figtree, Arial, sans-serif" font-size="18" font-weight="700">RESULTAT VISUAL</text>
+  <text x="152" y="501" fill="#ECFEFF" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="600">Pantalles consistents i preparades per créixer</text>
+  <defs>
+    <linearGradient id="bg" x1="90" y1="66" x2="1087" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDF7FF"/>
+      <stop offset="1" stop-color="#EAF2FF"/>
+    </linearGradient>
+  </defs>
+</svg>

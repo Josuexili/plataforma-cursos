@@ -1,11 +1,196 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@layer base {
+    :root {
+        --ink: #122033;
+        --paper: #f6f1e8;
+        --paper-soft: #fbf8f2;
+        --line: #d6d1c7;
+        --accent-blue: #2f5ea8;
+        --accent-sky: #cfe0fb;
+        --accent-sand: #efd7ac;
+        --accent-coral: #d47e64;
+    }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    body {
+        @apply text-slate-900;
+        background:
+            radial-gradient(circle at top left, rgba(239, 215, 172, 0.18), transparent 28rem),
+            linear-gradient(180deg, rgba(47, 94, 168, 0.06), transparent 18rem),
+            linear-gradient(180deg, var(--paper-soft) 0%, var(--paper) 100%);
+    }
+}
+
+@layer components {
+    .app-canvas {
+        background:
+            linear-gradient(90deg, rgba(18, 32, 51, 0.018) 0, rgba(18, 32, 51, 0.018) 1px, transparent 1px, transparent 100%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+        background-size: 28px 28px, auto;
+    }
+
+    .institutional-panel {
+        @apply rounded-2xl border shadow-[0_18px_38px_-30px_rgba(18,32,51,0.34)];
+        background-color: rgba(255, 255, 255, 0.92);
+        border-color: rgba(214, 209, 199, 0.92);
+    }
+
+    .institutional-card {
+        @apply rounded-xl border bg-white shadow-[0_14px_30px_-28px_rgba(18,32,51,0.28)];
+        border-color: rgba(214, 209, 199, 0.88);
+    }
+
+    .course-card {
+        @apply relative flex h-full flex-col overflow-hidden rounded-xl border shadow-[0_20px_42px_-34px_rgba(18,32,51,0.28)] transition duration-200;
+    }
+
+    .course-card:hover {
+        transform: translateY(-3px) rotate(-0.12deg);
+    }
+
+    .course-card-cover {
+        @apply h-52 w-full object-cover;
+    }
+
+    .course-card-body {
+        @apply flex h-full flex-1 flex-col p-6;
+    }
+
+    .course-card-metrics {
+        @apply mt-4 rounded-lg border px-4 py-3 text-sm text-slate-700;
+    }
+
+    .course-card--inicial {
+        background:
+            linear-gradient(180deg, rgba(230, 241, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 42%),
+            linear-gradient(90deg, rgba(47, 94, 168, 0.08), rgba(47, 94, 168, 0));
+        border-color: rgba(138, 172, 226, 0.72);
+    }
+
+    .course-card--intermedi {
+        background:
+            linear-gradient(180deg, rgba(255, 244, 226, 0.95) 0%, rgba(255, 255, 255, 0.98) 42%),
+            linear-gradient(90deg, rgba(212, 126, 100, 0.08), rgba(212, 126, 100, 0));
+        border-color: rgba(226, 177, 120, 0.78);
+    }
+
+    .course-card--avancat {
+        background:
+            linear-gradient(180deg, rgba(243, 235, 255, 0.96) 0%, rgba(255, 255, 255, 0.98) 42%),
+            linear-gradient(90deg, rgba(117, 89, 184, 0.08), rgba(117, 89, 184, 0));
+        border-color: rgba(180, 163, 222, 0.76);
+    }
+
+    .course-card-metrics--inicial {
+        background-color: rgba(255, 255, 255, 0.82);
+        border-color: rgba(171, 198, 241, 0.72);
+    }
+
+    .course-card-metrics--intermedi {
+        background-color: rgba(255, 255, 255, 0.82);
+        border-color: rgba(231, 194, 151, 0.76);
+    }
+
+    .course-card-metrics--avancat {
+        background-color: rgba(255, 255, 255, 0.82);
+        border-color: rgba(194, 180, 228, 0.76);
+    }
+
+    .institutional-hero {
+        background:
+            radial-gradient(circle at top right, rgba(239, 215, 172, 0.58), transparent 12rem),
+            linear-gradient(135deg, rgba(22, 38, 62, 0.98), rgba(42, 77, 130, 0.96) 62%, rgba(244, 248, 255, 0.88) 62%, rgba(244, 248, 255, 0.88) 100%);
+        @apply rounded-[2rem] text-white shadow-[0_28px_58px_-40px_rgba(22,38,62,0.6)];
+    }
+
+    .section-label {
+        @apply text-[11px] font-semibold uppercase tracking-[0.24em];
+        color: #4b6c9c;
+    }
+
+    .section-title {
+        @apply text-2xl font-semibold tracking-tight text-slate-950;
+    }
+
+    .section-copy {
+        @apply text-sm leading-6 text-slate-600;
+    }
+
+    .btn-institutional {
+        @apply inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+        background: linear-gradient(180deg, #305faa 0%, #214780 100%);
+        box-shadow: 0 10px 24px -18px rgba(33, 71, 128, 0.8);
+    }
+
+    .btn-institutional-secondary {
+        @apply inline-flex items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+        border-color: rgba(168, 185, 214, 0.9);
+        color: #22416f;
+    }
+
+    .btn-institutional-danger {
+        @apply inline-flex items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+        border-color: rgba(228, 165, 154, 0.95);
+        color: #b0442f;
+    }
+
+    .status-chip {
+        @apply inline-flex rounded-full px-3 py-1 text-xs font-semibold tracking-wide;
+    }
+
+    .status-chip-blue {
+        @apply status-chip bg-blue-100 text-blue-800;
+    }
+
+    .status-chip-amber {
+        @apply status-chip bg-amber-100 text-amber-800;
+    }
+
+    .status-chip-emerald {
+        @apply status-chip bg-emerald-100 text-emerald-800;
+    }
+
+    .status-chip-level-inicial {
+        @apply status-chip bg-sky-100 text-sky-800;
+    }
+
+    .status-chip-level-intermedi {
+        @apply status-chip bg-orange-100 text-orange-800;
+    }
+
+    .status-chip-level-avancat {
+        @apply status-chip bg-pink-100 text-pink-800;
+    }
+
+    .home-roles {
+        @apply grid gap-5 md:grid-cols-3;
+    }
+
+    .home-role-card {
+        @apply rounded-[1.4rem] border bg-white/90 p-6 shadow-[0_18px_38px_-32px_rgba(18,32,51,0.3)];
+        border-color: rgba(214, 209, 199, 0.9);
+    }
+
+    .home-role-card:nth-child(2) {
+        transform: translateY(8px);
+    }
+
+    .home-role-card:nth-child(3) {
+        transform: translateY(-4px);
+    }
+
+    .editorial-callout {
+        @apply rounded-[1.6rem] border p-6;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 240, 233, 0.98));
+        border-color: rgba(214, 209, 199, 0.92);
+    }
+
+    .home-note {
+        @apply rounded-2xl border px-5 py-4 text-sm leading-6;
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(214, 209, 199, 0.84);
+        color: #475569;
+    }
 }

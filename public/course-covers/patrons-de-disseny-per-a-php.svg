@@ -1,0 +1,26 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect x="72" y="72" width="1056" height="556" rx="42" fill="#FFFDF8"/>
+  <circle cx="1016" cy="136" r="188" fill="#2563EB" fill-opacity="0.12"/>
+  <text x="118" y="168" fill="#111827" font-family="Figtree, Arial, sans-serif" font-size="48" font-weight="700">Patrons de disseny per a PHP</text>
+  <text x="118" y="222" fill="#475569" font-family="Figtree, Arial, sans-serif" font-size="25" font-weight="500">Arquitectura de backend més neta i mantenible</text>
+  <rect x="118" y="286" width="246" height="56" rx="18" fill="#9A3412"/>
+  <text x="154" y="322" fill="white" font-family="Figtree, Arial, sans-serif" font-size="22" font-weight="700">Nivell avançat</text>
+  <g>
+    <circle cx="842" cy="298" r="94" fill="#DBEAFE"/>
+    <circle cx="962" cy="224" r="72" fill="#BFDBFE"/>
+    <circle cx="980" cy="374" r="72" fill="#93C5FD"/>
+    <path d="M886 252L920 232" stroke="#1E3A8A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M892 350L924 366" stroke="#1E3A8A" stroke-width="14" stroke-linecap="round"/>
+    <path d="M952 286L964 312" stroke="#1E3A8A" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <rect x="118" y="430" width="560" height="92" rx="26" fill="#0F172A"/>
+  <text x="154" y="468" fill="#FDBA74" font-family="Figtree, Arial, sans-serif" font-size="18" font-weight="700">ENFOCAMENT</text>
+  <text x="154" y="502" fill="#F8FAFC" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="600">Aplicar patrons només quan realment milloren el codi</text>
+  <defs>
+    <linearGradient id="bg" x1="102" y1="70" x2="1105" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F6FF"/>
+      <stop offset="1" stop-color="#E8F0FF"/>
+    </linearGradient>
+  </defs>
+</svg>

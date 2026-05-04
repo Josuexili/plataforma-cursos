@@ -1,0 +1,27 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <circle cx="997" cy="92" r="216" fill="#38BDF8" fill-opacity="0.14"/>
+  <circle cx="198" cy="627" r="255" fill="#1D4ED8" fill-opacity="0.11"/>
+  <rect x="72" y="76" width="1056" height="548" rx="38" fill="#081226" fill-opacity="0.94"/>
+  <rect x="108" y="112" width="284" height="18" rx="9" fill="#60A5FA" fill-opacity="0.25"/>
+  <text x="108" y="184" fill="#F8FAFC" font-family="Figtree, Arial, sans-serif" font-size="52" font-weight="700">Introducció a Laravel</text>
+  <text x="108" y="240" fill="#BFDBFE" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="500">Rutes, controladors, migracions i vistes Blade</text>
+  <rect x="108" y="308" width="270" height="58" rx="18" fill="#1D4ED8"/>
+  <text x="145" y="346" fill="white" font-family="Figtree, Arial, sans-serif" font-size="23" font-weight="700">Nivell inicial</text>
+  <g opacity="0.95">
+    <rect x="760" y="150" width="254" height="254" rx="42" fill="#DBEAFE"/>
+    <path d="M825 220L890 182L955 220V334L890 372L825 334V220Z" fill="#1D4ED8"/>
+    <path d="M888 182V372" stroke="#DBEAFE" stroke-width="12" stroke-linecap="round"/>
+    <path d="M825 220L890 256L955 220" stroke="#DBEAFE" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="702" y="448" width="370" height="96" rx="28" fill="#0F172A" fill-opacity="0.45" stroke="#1E3A8A" stroke-opacity="0.8"/>
+  <text x="742" y="487" fill="#93C5FD" font-family="Figtree, Arial, sans-serif" font-size="18" font-weight="700">ITINERARI DEL CURS</text>
+  <text x="742" y="521" fill="#F8FAFC" font-family="Figtree, Arial, sans-serif" font-size="24" font-weight="600">Posar bases sòlides</text>
+  <text x="742" y="553" fill="#CBD5E1" font-family="Figtree, Arial, sans-serif" font-size="20" font-weight="500">per entendre l’estructura de Laravel</text>
+  <defs>
+    <linearGradient id="bg" x1="98" y1="64" x2="1092" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8EAFE"/>
+      <stop offset="1" stop-color="#EAF2FF"/>
+    </linearGradient>
+  </defs>
+</svg>
