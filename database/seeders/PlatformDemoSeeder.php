@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Lesson;
 use App\Models\User;
+use App\Support\Permissions\PlatformPermissions;
 use Database\Seeders\Data\DemoCourses;
 use Database\Seeders\Data\DemoUsers;
 use Database\Seeders\Support\LessonContentFactory;
@@ -17,30 +18,6 @@ use Spatie\Permission\PermissionRegistrar;
 
 class PlatformDemoSeeder extends Seeder
 {
-    private const PERMISSIONS = [
-        'courses.create',
-        'courses.update.own',
-        'courses.restore.own',
-        'courses.view.enrollments',
-        'lessons.manage',
-        'enrollments.manage.own',
-        'enrollments.manage.all',
-        'teacher-requests.review',
-    ];
-
-    private const STUDENT_PERMISSIONS = [
-        'enrollments.manage.own',
-    ];
-
-    private const TEACHER_PERMISSIONS = [
-        'courses.create',
-        'courses.update.own',
-        'courses.restore.own',
-        'courses.view.enrollments',
-        'lessons.manage',
-        'enrollments.manage.own',
-    ];
-
     public function run(): void
     {
         [$studentRole, $teacherRole, $adminRole] = $this->seedRolesAndPermissions();
@@ -66,7 +43,7 @@ class PlatformDemoSeeder extends Seeder
     {
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        foreach (self::PERMISSIONS as $permission) {
+        foreach (PlatformPermissions::all() as $permission) {
             Permission::findOrCreate($permission, 'web');
         }
 
@@ -77,11 +54,11 @@ class PlatformDemoSeeder extends Seeder
         $adminRole = Role::findOrCreate('admin', 'web');
 
         $studentRole->syncPermissions(
-            Permission::query()->whereIn('name', self::STUDENT_PERMISSIONS)->get()
+            Permission::query()->whereIn('name', PlatformPermissions::forStudent())->get()
         );
 
         $teacherRole->syncPermissions(
-            Permission::query()->whereIn('name', self::TEACHER_PERMISSIONS)->get()
+            Permission::query()->whereIn('name', PlatformPermissions::forTeacher())->get()
         );
 
         $adminRole->syncPermissions(Permission::query()->get());

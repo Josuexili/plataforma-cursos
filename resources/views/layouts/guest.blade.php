@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Plataforma de cursos') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('brand-mark.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,11 +19,10 @@
         <div class="app-canvas min-h-screen flex flex-col items-center justify-center px-4 py-10">
             <div class="mb-6 text-center">
                 <a href="/">
-                    <x-application-logo class="mx-auto h-20 w-20 fill-current text-blue-900" />
+                    <x-application-logo class="mx-auto h-28 w-auto" />
                 </a>
-                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.28em] text-blue-700">Plataforma de cursos</p>
-                <h1 class="mt-2 text-2xl font-semibold tracking-tight text-slate-950">Accés acadèmic</h1>
-                <p class="mx-auto mt-2 max-w-md text-sm text-slate-600">Accedeix al teu espai per consultar cursos, seguir lliçons i gestionar la teva activitat dins la plataforma.</p>
+                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">Plataforma de cursos</p>
+                <h1 class="mt-2 text-2xl font-semibold tracking-tight text-slate-950">Accés</h1>
             </div>
 
             <div class="institutional-panel w-full max-w-md overflow-hidden px-6 py-6 sm:px-8">

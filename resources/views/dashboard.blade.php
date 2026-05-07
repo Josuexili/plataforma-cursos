@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-slate-950 leading-tight">
-            Dashboard
+            Panell
         </h2>
     </x-slot>
 
@@ -10,12 +10,12 @@
             <section class="institutional-hero p-8">
                 <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-blue-100">Àrea personal</p>
+                        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-100">Compte</p>
                         <h3 class="mt-3 text-3xl font-semibold tracking-tight">Benvingut, {{ auth()->user()->name }}</h3>
-                        <p class="mt-3 max-w-2xl text-sm leading-6 text-blue-100/90">Aquest panell resumeix l’activitat del compte, l’estat de les inscripcions i els accessos disponibles segons el teu rol dins la plataforma.</p>
+                        <p class="mt-3 max-w-2xl text-sm leading-6 text-blue-100">Resum d'activitat, inscripcions i accessos disponibles.</p>
                     </div>
-                    <div class="rounded-2xl border border-white/15 bg-white/10 px-5 py-4 backdrop-blur-sm">
-                        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">Rol actual</p>
+                    <div class="rounded-2xl border border-blue-800 bg-blue-800 px-5 py-4">
+                        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-100">Rol actual</p>
                         <p class="mt-2 text-lg font-semibold text-white">{{ auth()->user()->role_label }}</p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     <h3 class="mt-2 text-xl font-semibold text-slate-950">Últims cursos</h3>
                     <div class="mt-4 space-y-3">
                         @foreach ($latestCourses as $course)
-                            <div class="rounded-2xl border border-blue-100 bg-blue-50/50 px-4 py-3">
+                            <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
                                 <p class="font-medium text-slate-950">{{ $course->titol }}</p>
                                 <p class="mt-1 text-sm text-slate-600">{{ $course->nivell_label }} · {{ $course->durada_hores }} hores</p>
                             </div>
@@ -77,9 +77,9 @@
             <div class="grid gap-6 md:grid-cols-2">
                 @if (auth()->user()->hasRole('student'))
                     <div class="institutional-card p-6">
-                        <p class="section-label">Itinerari docent</p>
-                        <h3 class="mt-2 text-lg font-semibold text-slate-950">Validació per administració</h3>
-                        <p class="mt-2 text-sm text-slate-600">El rol de professor no s'assigna automàticament. Pots enviar una sol·licitud perquè l'admin la revisi.</p>
+                        <p class="section-label">Professorat</p>
+                        <h3 class="mt-2 text-lg font-semibold text-slate-950">Sol·licitud de professor</h3>
+                        <p class="mt-2 text-sm text-slate-600">Envia la teva sol·licitud si necessites permisos de professor.</p>
 
                         @if (auth()->user()->teacher_application_status === 'pending')
                             <p class="status-chip-amber mt-4">
@@ -116,9 +116,9 @@
                     <div class="institutional-card p-6">
                         <p class="section-label">Administració</p>
                         <h3 class="mt-2 text-lg font-semibold text-slate-950">Sol·licituds pendents</h3>
-                        <p class="mt-2 text-sm text-slate-600">Actualment hi ha {{ $pendingTeacherApplications }} peticions de professor per revisar.</p>
+                        <p class="mt-2 text-sm text-slate-600">Actualment hi ha {{ $pendingTeacherApplications }} sol·licituds pendents.</p>
                         <a href="{{ route('teacher-applications.index') }}" class="btn-institutional mt-4">
-                            Obrir panell
+                            Obrir
                         </a>
                     </div>
                 @endif

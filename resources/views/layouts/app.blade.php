@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Plataforma de cursos') }}</title>
+        <link rel="icon" type="image/png" href="{{ asset('brand-mark.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,7 +21,7 @@
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="relative z-10 border-b border-[#d6d1c7]/80 bg-white/70 backdrop-blur-sm">
+                <header class="relative z-10 border-b border-slate-200 bg-white">
                     <div class="max-w-7xl mx-auto px-4 py-7 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

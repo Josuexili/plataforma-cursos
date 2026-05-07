@@ -55,6 +55,7 @@ class CourseService
      *     canEnroll: bool,
      *     isGuest: bool,
      *     isStaff: bool,
+     *     manageableLessons: Collection<int, mixed>,
      *     enrolledUsers: LengthAwarePaginator|null
      * }
      */
@@ -69,6 +70,7 @@ class CourseService
         $lessons = $this->orderedCourseLessons($course);
         $previewLessons = (clone $lessons)->limit(2)->get();
         $fullLessons = $canViewContent ? $lessons->get() : collect();
+        $manageableLessons = $isStaff ? $lessons->get() : collect();
         $enrolledUsers = ($isStaff && $user?->can('courses.view.enrollments'))
             ? $this->courseEnrollmentsPaginator($course)
             : null;
@@ -81,6 +83,7 @@ class CourseService
             'canEnroll' => (bool) $user && ! $isStaff && ! $isEnrolled,
             'isGuest' => ! $user,
             'isStaff' => $isStaff,
+            'manageableLessons' => $manageableLessons,
             'enrolledUsers' => $enrolledUsers,
         ];
     }

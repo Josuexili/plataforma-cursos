@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use App\Support\Permissions\PlatformPermissions;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -59,16 +60,7 @@ class UserFactory extends Factory
         ])->afterCreating(function (User $user): void {
             if (Schema::hasTable('roles')) {
                 $role = Role::query()->firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
-                foreach ([
-                    'courses.create',
-                    'courses.update.own',
-                    'courses.restore.own',
-                    'courses.view.enrollments',
-                    'lessons.manage',
-                    'enrollments.manage.own',
-                    'enrollments.manage.all',
-                    'teacher-requests.review',
-                ] as $permission) {
+                foreach (PlatformPermissions::all() as $permission) {
                     Permission::findOrCreate($permission, 'web');
                 }
 
@@ -83,11 +75,34 @@ class UserFactory extends Factory
         return $this->afterCreating(function (User $user): void {
             if (Schema::hasTable('roles')) {
                 $role = Role::query()->firstOrCreate(['name' => 'student', 'guard_name' => 'web']);
-                Permission::findOrCreate('enrollments.manage.own', 'web');
+                Permission::findOrCreate(PlatformPermissions::ENROLLMENTS_MANAGE_OWN, 'web');
                 $role->syncPermissions(
-                    Permission::query()->where('name', 'enrollments.manage.own')->get()
+                    Permission::query()->where('name', PlatformPermissions::ENROLLMENTS_MANAGE_OWN)->get()
                 );
                 $user->syncRoles([$role]);
+            }
+        });
+    }
+
+    public function teacher(): static
+    {
+        return $this->student()->afterCreating(function (User $user): void {
+            if (Schema::hasTable('roles')) {
+                $role = Role::query()->firstOrCreate(['name' => 'teacher', 'guard_name' => 'web']);
+
+                foreach (PlatformPermissions::forTeacher() as $permission) {
+                    Permission::findOrCreate($permission, 'web');
+                }
+
+                $role->syncPermissions(
+                    Permission::query()->whereIn('name', PlatformPermissions::forTeacher())->get()
+                );
+                $user->syncRoles([$role]);
+                $user->forceFill([
+                    'teacher_application_status' => 'approved',
+                    'teacher_requested_at' => now()->subWeek(),
+                    'teacher_reviewed_at' => now(),
+                ])->save();
             }
         });
     }

@@ -8,7 +8,6 @@ use App\Queries\Enrollments\EnrollmentIndexQuery;
 use App\Services\Enrollments\EnrollmentService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class EnrollmentController extends Controller
@@ -32,6 +31,7 @@ class EnrollmentController extends Controller
 
     public function create(Request $request): View
     {
+        $this->authorize('create', Enrollment::class);
         $canManageAll = $request->user()->can('enrollments.manage.all');
 
         return view('enrollments.form', $this->enrollmentService->formData(
@@ -44,6 +44,7 @@ class EnrollmentController extends Controller
 
     public function store(EnrollmentRequest $request): RedirectResponse
     {
+        $this->authorize('create', Enrollment::class);
         $result = $this->enrollmentService->store(
             $request->validated(),
             $request->user(),
@@ -59,7 +60,7 @@ class EnrollmentController extends Controller
 
     public function show(Request $request, Enrollment $enrollment): View
     {
-        $this->authorizeEnrollmentAccess($request, $enrollment);
+        $this->authorize('view', $enrollment);
         $enrollment->load(['user', 'course']);
 
         return view('enrollments.show', [
@@ -70,7 +71,7 @@ class EnrollmentController extends Controller
     public function edit(Request $request, Enrollment $enrollment): View
     {
         $canManageAll = $request->user()->can('enrollments.manage.all');
-        $this->authorizeEnrollmentAccess($request, $enrollment);
+        $this->authorize('update', $enrollment);
 
         return view('enrollments.form', $this->enrollmentService->formData(
             $request->user(),
@@ -82,7 +83,7 @@ class EnrollmentController extends Controller
 
     public function update(EnrollmentRequest $request, Enrollment $enrollment): RedirectResponse
     {
-        $this->authorizeEnrollmentAccess($request, $enrollment);
+        $this->authorize('update', $enrollment);
         $this->enrollmentService->update(
             $enrollment,
             $request->validated(),
@@ -97,7 +98,7 @@ class EnrollmentController extends Controller
 
     public function destroy(Request $request, Enrollment $enrollment): RedirectResponse
     {
-        $this->authorizeEnrollmentAccess($request, $enrollment);
+        $this->authorize('delete', $enrollment);
         $this->enrollmentService->archive($enrollment);
 
         return redirect()
@@ -108,18 +109,11 @@ class EnrollmentController extends Controller
     public function restore(Request $request, int $enrollment): RedirectResponse
     {
         $enrollmentModel = Enrollment::onlyTrashed()->findOrFail($enrollment);
-        $this->authorizeEnrollmentAccess($request, $enrollmentModel);
+        $this->authorize('restore', $enrollmentModel);
         $this->enrollmentService->restore($enrollmentModel);
 
         return redirect()
             ->route('enrollments.index', ['status' => 'archived'])
             ->with('status', 'La inscripció s\'ha restaurat correctament.');
-    }
-
-    private function authorizeEnrollmentAccess(Request $request, Enrollment $enrollment): void
-    {
-        if (! $request->user()->can('enrollments.manage.all')) {
-            Gate::authorize('is-owner', $enrollment);
-        }
     }
 }

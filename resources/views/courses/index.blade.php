@@ -6,24 +6,30 @@
                 <h1 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Cursos</h1>
                 <p class="mt-2 text-sm leading-6 text-slate-600">
                     @if ($isGuestView)
-                        Vista limitada per a visitants.
+                        Catàleg obert.
                     @else
-                        Llistat general de cursos disponibles.
+                        Llistat general de cursos.
                     @endif
                 </p>
             </div>
-            @auth
-                @if (auth()->user()->can('courses.create'))
-                    <a href="{{ route('courses.create') }}" class="btn-institutional">
-                        Nou curs
-                    </a>
-                @endif
-            @endauth
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
+            @auth
+                @if (auth()->user()->can('courses.create'))
+                    <div class="flex flex-wrap gap-3">
+                        <a href="{{ route('courses.index') }}" class="btn-institutional">
+                            Tots els cursos
+                        </a>
+                        <a href="{{ route('courses.mine') }}" class="btn-institutional-secondary">
+                            Els meus cursos
+                        </a>
+                    </div>
+                @endif
+            @endauth
+
             <div class="institutional-panel p-5">
                 <form method="GET" action="{{ route('courses.index') }}" class="grid gap-4 md:grid-cols-4">
                     <div>
@@ -82,8 +88,8 @@
                             <p class="mt-3 text-sm leading-6 text-slate-600">{{ \Illuminate\Support\Str::limit($course->descripcio, 120) }}</p>
                             <div class="course-card-metrics {{ $levelClasses['metrics'] }}">
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="rounded-md bg-white/75 px-2.5 py-1 text-xs font-semibold text-slate-700">{{ $course->durada_hores }} h</span>
-                                    <span class="rounded-md bg-white/75 px-2.5 py-1 text-xs font-semibold text-slate-700">{{ $course->lessons_count }} lliçons</span>
+                                    <span class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-slate-700">{{ $course->durada_hores }} h</span>
+                                    <span class="rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-slate-700">{{ $course->lessons_count }} lliçons</span>
                                 </div>
                                 <p class="mt-3 text-sm text-slate-600">Responsable: <span class="font-medium text-slate-800">{{ $course->creator?->name ?? 'Sense assignar' }}</span></p>
                             </div>
@@ -91,7 +97,7 @@
                             <div class="mt-auto flex flex-wrap gap-3 pt-6">
                                 @if (! $course->trashed())
                                     <a href="{{ route('courses.show', $course) }}" class="btn-institutional-secondary">
-                                        {{ $isGuestView ? 'Vista previa' : 'Veure detall' }}
+                                        {{ $isGuestView ? 'Vista prèvia' : 'Veure detall' }}
                                     </a>
                                 @endif
 
@@ -121,7 +127,7 @@
                         </div>
                     </article>
                 @empty
-                    <div class="institutional-card p-6 text-sm text-slate-600 md:col-span-2 xl:col-span-3">
+                    <div class="page-empty md:col-span-2 xl:col-span-3">
                         Encara no hi ha cursos registrats.
                     </div>
                 @endforelse

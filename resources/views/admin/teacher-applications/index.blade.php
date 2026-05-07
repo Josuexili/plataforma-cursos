@@ -3,16 +3,16 @@
         <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div>
                 <h1 class="text-2xl font-semibold text-gray-900">Sol·licituds de professor</h1>
-                <p class="mt-1 text-sm text-gray-600">Panell d'administració per validar qui pot publicar i gestionar cursos.</p>
+                <p class="mt-1 text-sm text-gray-600">Revisió de sol·licituds pendents.</p>
             </div>
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
-            <div class="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
+            <div class="page-table">
                 <table class="min-w-full divide-y divide-gray-200 text-sm">
-                    <thead class="bg-gray-50">
+                    <thead>
                         <tr>
                             <th class="px-4 py-3 text-left font-medium text-gray-500">Nom</th>
                             <th class="px-4 py-3 text-left font-medium text-gray-500">Correu</th>

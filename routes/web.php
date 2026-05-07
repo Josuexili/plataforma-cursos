@@ -49,6 +49,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
     Route::post('courses/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
+    Route::post('courses/{course}/lessons/reorder', [LessonController::class, 'reorder'])->name('courses.lessons.reorder');
+    Route::post('lessons/{lesson}/move', [LessonController::class, 'move'])->name('lessons.move');
+    Route::get('my-courses', [CourseController::class, 'mine'])->name('courses.mine');
     Route::resource('courses', CourseController::class)
         ->except(['index', 'show'])
         ->where(['course' => '[0-9]+']);

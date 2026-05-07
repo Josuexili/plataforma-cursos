@@ -9,7 +9,6 @@ use App\Queries\Courses\CourseIndexQuery;
 use App\Services\Courses\CourseService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class CourseController extends Controller
@@ -36,16 +35,29 @@ class CourseController extends Controller
         ]);
     }
 
+    public function mine(Request $request): View
+    {
+        $user = $request->user();
+        abort_unless($user && $user->can('courses.create'), 403);
+
+        $status = $request->string('status')->value() ?: 'active';
+
+        return view('courses.mine', [
+            'courses' => $this->courseIndexQuery->paginateOwned($user, $status),
+            'status' => $status,
+        ]);
+    }
+
     public function create(): View
     {
-        abort_unless(auth()->user()->can('courses.create'), 403);
+        $this->authorize('create', Course::class);
 
         return view('courses.form', $this->courseService->formData(new Course(), false));
     }
 
     public function store(CourseRequest $request): RedirectResponse
     {
-        abort_unless($request->user()->can('courses.create'), 403);
+        $this->authorize('create', Course::class);
 
         $course = $this->courseService->create($request->validated(), $request->user());
 
@@ -61,14 +73,14 @@ class CourseController extends Controller
 
     public function edit(Course $course): View
     {
-        $this->authorizeOwnedCourse($course);
+        $this->authorize('update', $course);
 
         return view('courses.form', $this->courseService->formData($course, true));
     }
 
     public function update(CourseRequest $request, Course $course): RedirectResponse
     {
-        $this->authorizeOwnedCourse($course, $request);
+        $this->authorize('update', $course);
         $this->courseService->update($course, $request->validated());
 
         return redirect()
@@ -78,7 +90,7 @@ class CourseController extends Controller
 
     public function destroy(Course $course): RedirectResponse
     {
-        $this->authorizeOwnedCourse($course);
+        $this->authorize('delete', $course);
         $this->courseService->archive($course);
 
         return redirect()
@@ -89,11 +101,7 @@ class CourseController extends Controller
     public function restore(Request $request, int $course): RedirectResponse
     {
         $courseModel = Course::onlyTrashed()->findOrFail($course);
-
-        if (! $request->user()->isAdmin()) {
-            abort_unless($request->user()->can('courses.restore.own'), 403);
-            Gate::authorize('is-owner', $courseModel);
-        }
+        $this->authorize('restore', $courseModel);
 
         $this->courseService->restore($courseModel);
 
@@ -109,12 +117,5 @@ class CourseController extends Controller
         return redirect()
             ->route('courses.show', $course)
             ->with('status', $status);
-    }
-
-    private function authorizeOwnedCourse(Course $course, ?Request $request = null): void
-    {
-        $user = $request?->user() ?? auth()->user();
-        abort_unless($user->can('courses.update.own'), 403);
-        Gate::authorize('is-owner', $course);
     }
 }

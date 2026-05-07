@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class LessonRequest extends FormRequest
+class LessonOrderRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,13 +18,14 @@ class LessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'course_id' => [
+            'positions' => ['required', 'array', 'min:1'],
+            'positions.*' => ['required', 'integer', 'min:1'],
+            'lesson_ids' => ['required', 'array', 'min:1'],
+            'lesson_ids.*' => [
                 'required',
                 'integer',
-                Rule::exists('courses', 'id')->whereNull('deleted_at'),
+                Rule::exists('lessons', 'id')->whereNull('deleted_at'),
             ],
-            'titol' => ['required', 'string', 'max:255'],
-            'contingut' => ['required', 'string', 'max:8000'],
         ];
     }
 }

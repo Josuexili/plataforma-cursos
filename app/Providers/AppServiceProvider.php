@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+use App\Models\Course;
+use App\Models\Enrollment;
+use App\Models\Lesson;
+use App\Policies\CoursePolicy;
+use App\Policies\EnrollmentPolicy;
+use App\Policies\LessonPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,16 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('is-admin', fn (User $user): bool => $user->hasRole('admin'));
-
-        Gate::define('is-owner', function (User $user, mixed $resource): bool {
-            if ($user->hasRole('admin')) {
-                return true;
-            }
-
-            return is_object($resource)
-                && isset($resource->user_id)
-                && (int) $resource->user_id === (int) $user->id;
-        });
+        Gate::policy(Course::class, CoursePolicy::class);
+        Gate::policy(Lesson::class, LessonPolicy::class);
+        Gate::policy(Enrollment::class, EnrollmentPolicy::class);
     }
 }
